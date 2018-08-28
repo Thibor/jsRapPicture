@@ -1,2 +1,2 @@
 # jsRapPicture
-Jquery sideshow plugin
+JQuery sideshow plugin.
