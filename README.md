@@ -1,0 +1,2 @@
+# jsRapPicture
+Jquery sideshow plugin
