@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Demo</title>
+<link rel="stylesheet" href="index.css" />
+<link rel="stylesheet" href="jsRapPicture.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="jsRapPicture.js"></script>
+<script>
+function ClickPicture(t,next){
+var w = 200 + Math.floor(Math.random() * 10) * 10;
+var h = 300 + Math.floor(Math.random() * 10) * 10;
+var src = 'https://picsum.photos/' + w + '/' + h + '/?random';
+$(t)[0].SetImg(src);
+}
+
+$(document).ready(function(){
+$('#demo1').jsRapPicture({
+	onNext:function(next){
+		ClickPicture(this,next);
+	}
+});
+$('#demo2').jsRapPicture({
+	auto:true,
+	showMenu:false,
+	onNext:function(next){
+		ClickPicture(this,next);
+	}
+});
+
+});
+</script>
+</head>
+<body>
+<div id="divMain">
+<div id="divGitHub">
+<div id="GitHub" onclick="window.open('https://github.com/Thibor/jsRapPicture', '_blank')">Fork me on GitHub</div>
+</div>
+<div id="demo1" >
+<img src="https://picsum.photos/200/400/?random" />
+</div>
+<div id="demo2" >
+<img src="https://picsum.photos/300/400/?random" />
+</div>
+</body>
+</html>
