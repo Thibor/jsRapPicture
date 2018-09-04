@@ -70,7 +70,7 @@ return this.each(function(){
 	this.img2 = $('<img>').attr('src',this.opt.src).addClass('rapPicture2').appendTo(this.div);
 	this.img3 = $('<img>').attr('src',this.opt.src).addClass('rapPicture3').appendTo(this.div);
 	if(this.opt.showMenu)
-		this.menu = $('<ul class="custom-menu"><li data-action="next">Next Image</li><li data-action="previous">Previous Image</li><li class="fullscreen" data-action="fullscreen"></li><li class="slideshow" data-action="slideshow"></li></ul>').appendTo(this);
+		this.menu = $('<ul class="custom-menu"><li>Next Image</li><li>Previous Image</li><li class="fullscreen"></li><li class="slideshow"></li></ul>').appendTo(this);
 	$(this).bind({
 		click:function(e){
 			e.preventDefault();
@@ -88,21 +88,21 @@ return this.each(function(){
 	$('li',this).bind({
 		click:function(e){
 			e.stopPropagation();
-			switch($(this).attr("data-action")){
-			case "next":
+			switch($(this).index()){
+			case 0:
 				base.ClickNext(1);
 			break;	
-			case "previous":
+			case 1:
 				base.ClickNext(0);
 			break;	
-			case "fullscreen":
+			case 2:
 				base.opt.auto = false;
 				base.SetFullscreen(!fullScreenMode);
 				$(".custom-menu").hide();
 			break;
-			case "slideshow":
+			case 3:
 				base.SetAuto(!base.opt.auto);
-			$(".custom-menu").hide();
+				$(".custom-menu").hide();
 			break;
 			}
 		}
