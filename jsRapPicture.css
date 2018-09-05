@@ -53,21 +53,23 @@ height:100%;
 display:none;
 position:fixed;
 z-index:1000;
-    overflow: hidden;
-    border: 1px solid #CCC;
-    white-space: nowrap;
-    font-family: sans-serif;
+overflow: hidden;
+border: 1px solid #ccc;
+white-space: nowrap;
+font-family: sans-serif;
 background:#eee;
-    color: #333;
-    border-radius: 5px;
-	margin:0px;
-	padding:4px;
+color: #333;
+border-radius: 5px;
+margin:0px;
+padding:4px;
 }
 .custom-menu li{
-    padding: 4px 4px;
-    cursor: pointer;
-	list-style: none;
+border:solid 1px #eee;
+cursor: pointer;
+padding: 4px 4px;
+list-style: none;
 }
 .custom-menu li:hover {
-    background-color: #DEF;
+background-color:#def;
+border-color:#bcd;
 }

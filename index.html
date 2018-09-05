@@ -23,7 +23,13 @@ $('#demo1').jsRapPicture({
 });
 $('#demo2').jsRapPicture({
 	auto:true,
-	showMenu:false,
+	showDefaultMenu:false,
+	customMenu:['Info'],
+	onClickMenu:function(li){
+		var w = $(this.img)[0].naturalWidth;
+		var h = $(this.img)[0].naturalHeight;
+		alert('Image width ' + w + ' \nImage height ' + h);
+	},
 	onNext:function(next){
 		ClickPicture(this,next);
 	}

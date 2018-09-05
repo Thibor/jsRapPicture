@@ -48,29 +48,30 @@ $('.rapPicture img').finish();
 (function($){
 $.fn.jsRapPicture = function(options){
 	
-var defaults={
-auto:false,
-pause:3000,
-transformation:1000,
-showMenu:true,
-src:''
-}
-	
 return this.each(function(){
+	this.opt = $.extend({
+		auto:false,
+		pause:3000,
+		transformation:1000,
+		showDefaultMenu:true,
+		src:'',
+		customMenu:[],
+		onClickMenu:null
+	},options);
 	var base = this;
-	this.menu = null;
 	this.timerId = 0;
-	this.opt = $.extend(defaults,options);
-	$(this).addClass('rapPicture');
 	if($('img',this).length)
 		this.opt.src = $('img',this).attr('src');
-	$(this).empty();
+	$(this).empty().addClass('rapPicture');
 	this.div = $('<div>').addClass('rapPictureDiv rapPictureBorder').appendTo(this);
 	this.img = $('<img>').attr('src',this.opt.src).addClass('rapPicture1 rapPictureStd rapPictureBorder').appendTo(this);
 	this.img2 = $('<img>').attr('src',this.opt.src).addClass('rapPicture2').appendTo(this.div);
 	this.img3 = $('<img>').attr('src',this.opt.src).addClass('rapPicture3').appendTo(this.div);
-	if(this.opt.showMenu)
-		this.menu = $('<ul class="custom-menu"><li>Next Image</li><li>Previous Image</li><li class="fullscreen"></li><li class="slideshow"></li></ul>').appendTo(this);
+	var li = this.opt.showDefaultMenu ? '<li>Next Image</li><li>Previous Image</li><li class="fullscreen"></li><li class="slideshow"></li>' : '';
+	if(this.opt.customMenu.length)
+		 li += '<li>' + this.opt.customMenu.join('</li><li>') + '</li>';
+	 if(li)
+		this.menu = $('<ul class="custom-menu">' + li + '</ul>').appendTo(this);
 	$(this).bind({
 		click:function(e){
 			e.preventDefault();
@@ -88,22 +89,26 @@ return this.each(function(){
 	$('li',this).bind({
 		click:function(e){
 			e.stopPropagation();
-			switch($(this).index()){
-			case 0:
-				base.ClickNext(1);
-			break;	
-			case 1:
-				base.ClickNext(0);
-			break;	
-			case 2:
-				base.opt.auto = false;
-				base.SetFullscreen(!fullScreenMode);
-				$(".custom-menu").hide();
-			break;
-			case 3:
-				base.SetAuto(!base.opt.auto);
-				$(".custom-menu").hide();
-			break;
+			var li = $(this).text();
+			if(base.opt.onClickMenu)
+				base.opt.onClickMenu.call(base,li);
+			if(base.opt.showDefaultMenu)
+				switch($(this).index()){
+				case 0:
+					base.ClickNext(1);
+				break;
+				case 1:
+					base.ClickNext(0);
+				break;	
+				case 2:
+					base.opt.auto = false;
+					base.SetFullscreen(!fullScreenMode);
+					$(".custom-menu").hide();
+				break;
+				case 3:
+					base.SetAuto(!base.opt.auto);
+					$(".custom-menu").hide();
+				break;
 			}
 		}
 	});
