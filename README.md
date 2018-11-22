@@ -13,4 +13,4 @@ Option | Type | Default | Description
 ------ | ---- | ------- | -----------
 auto | boolean | false | Enables auto play of slides
 pause | int | 3000 | Auto play change interval
-transformation | 1000 | Transition speed
+transformation | int | 1000 | Transition speed
