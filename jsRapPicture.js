@@ -56,6 +56,7 @@ return this.each(function(){
 		showDefaultMenu:true,
 		src:'',
 		customMenu:[],
+		onLoad:null,
 		onClickMenu:null
 	},options);
 	var base = this;
@@ -92,24 +93,27 @@ return this.each(function(){
 			var li = $(this).text();
 			if(base.opt.onClickMenu)
 				base.opt.onClickMenu.call(base,li);
+			let hide = true;
 			if(base.opt.showDefaultMenu)
 				switch($(this).index()){
 				case 0:
 					base.ClickNext(1);
+					hide = false;
 				break;
 				case 1:
 					base.ClickNext(0);
+					hide = false;
 				break;	
 				case 2:
 					base.opt.auto = false;
 					base.SetFullscreen(!fullScreenMode);
-					$(".custom-menu").hide();
 				break;
 				case 3:
 					base.SetAuto(!base.opt.auto);
-					$(".custom-menu").hide();
 				break;
 			}
+			if(hide)
+				$(".custom-menu").hide();
 		}
 	});
 	
@@ -143,26 +147,33 @@ return this.each(function(){
 	}
 	
 	this.SetImg = function(src){
-		var w = $(this.img).width();
-		var h = $(this.img).height();
-		var p = $(this.img).offset();
-		$(this.img).css('opacity',0).attr('src',src);
-		$(this.img3).css('opacity',1);
-		$(this.div).css({width:w,height:h,top:p.top - window.scrollY,left:p.left - window.scrollX,opacity:1});
-		this.img[0].onload = function(){
-			var w = $(base.img).width();
-			var h = $(base.img).height();
-			var p = $(base.img).offset();
-			$(base.img2).attr('src',src);
-			$(base.img3).fadeTo(base.opt.transformation,0);
-			$(base.div).animate({left:p.left - window.scrollX,top:p.top - window.scrollY,width:w,height:h},base.opt.transformation,function(){
-				$(base.div).css('opacity',0);
-				$(base.img).css('opacity',1);
-				$(base.img3).attr('src',src);
-				base.Slideshow();
-			});
-		};
-		
+		$.get(src)
+		.done(function(){ 
+			$(base).show();
+			let	w = $(base.img).width();
+			let h = $(base.img).height();
+			let p = $(base.img).offset();
+			$(base.img).css('opacity',0).attr('src',src);
+			$(base.img3).css('opacity',1);
+			$(base.div).css({width:w,height:h,top:p.top - window.scrollY,left:p.left - window.scrollX,opacity:1});
+			base.img[0].onload = function(){
+				let	w = $(base.img).width();
+				let h = $(base.img).height();
+				let p = $(base.img).offset();
+				if(base.opt.onLoad)
+					base.opt.onLoad.call(base,w,h);
+				$(base.img2).attr('src',src);
+				$(base.img3).fadeTo(base.opt.transformation,0);
+				$(base.div).animate({left:p.left - window.scrollX,top:p.top - window.scrollY,width:w,height:h},base.opt.transformation,function(){
+					$(base.div).css('opacity',0);
+					$(base.img).css('opacity',1);
+					$(base.img3).attr('src',src);
+					base.Slideshow();
+				});
+			};
+		}).fail(function(){
+			$(base).hide();
+		});
 	}
 	
 	this.Slideshow = function(){
