@@ -17,3 +17,10 @@ transformation | int | 1000 | Transition speed
 showDefaultMenu | boolean | true | Show default menu: Next Image, Previous Image, Fullscreen, Slideshow
 src | string | '' | web address of the image
 customMenu | array | [] | Custom menu
+
+### Events
+
+Event | Params | Description
+------ | ---- | -------
+onLoad | width,height  | Fires after image fails to load
+onClickMenu | menuItem | Fires after clik menu
