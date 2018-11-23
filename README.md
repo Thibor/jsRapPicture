@@ -16,7 +16,7 @@ pause | int | 3000 | Auto play change interval
 transformation | int | 1000 | Transition speed
 showDefaultMenu | boolean | true | Show default menu: Next Image, Previous Image, Fullscreen, Slideshow
 src | string | '' | web address of the image
-customMenu | array | [] | Custom menu
+customMenu | array of strings| [] | Custom menu
 
 ### Events
 
