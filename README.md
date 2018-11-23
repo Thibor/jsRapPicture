@@ -22,5 +22,5 @@ customMenu | array | [] | Custom menu
 
 Event | Params | Description
 ------ | ---- | -------
-onLoad | width,height  | Fires after image fails to load
+onLoad | width,height  | Fires after image is loaded
 onClickMenu | menuItem | Fires after clik menu
