@@ -66,7 +66,7 @@ return this.each(function(){
 		this.opt.src = $('img',this).attr('src');
 	$(this).empty().addClass('rapPicture');
 	this.div = $('<div>').addClass('rapPictureDiv rapPictureBorder').appendTo(this);
-	this.img = $('<img>').attr('src',this.opt.src).addClass('rapPicture1 rapPictureStd rapPictureBorder').appendTo(this);
+	this.img1 = $('<img>').attr('src',this.opt.src).addClass('rapPicture1 rapPictureStd rapPictureBorder').appendTo(this);
 	this.img2 = $('<img>').attr('src',this.opt.src).addClass('rapPicture2').appendTo(this.div);
 	this.img3 = $('<img>').attr('src',this.opt.src).addClass('rapPicture3').appendTo(this.div);
 	var li = this.opt.showDefaultMenu ? '<li>Next Image</li><li>Previous Image</li><li class="fullscreen"></li><li class="slideshow"></li>' : '';
@@ -151,23 +151,23 @@ return this.each(function(){
 		$.get(src)
 		.done(function(){ 
 			$(base).show();
-			let	w = $(base.img).width();
-			let h = $(base.img).height();
-			let p = $(base.img).offset();
-			$(base.img).css('opacity',0).attr('src',src);
+			let	w = $(base.img1).width();
+			let h = $(base.img1).height();
+			let p = $(base.img1).offset();
+			$(base.img1).css('opacity',0).attr('src',src);
 			$(base.img3).css('opacity',1);
 			$(base.div).css({width:w,height:h,top:p.top - window.scrollY,left:p.left - window.scrollX,opacity:1});
-			base.img[0].onload = function(){
-				let	width = $(base.img).width();
-				let height = $(base.img).height();
-				let p = $(base.img).offset();
+			base.img1[0].onload = function(){
+				let	width = $(base.img1).width();
+				let height = $(base.img1).height();
+				let p = $(base.img1).offset();
 				if(base.opt.onLoad)
 					base.opt.onLoad.call(base,width,height);
 				$(base.img2).attr('src',src);
 				$(base.img3).fadeTo(base.opt.transition,0);
 				$(base.div).animate({left:p.left - window.scrollX,top:p.top - window.scrollY,width:width,height:height},base.opt.transition,function(){
 					$(base.div).css('opacity',0);
-					$(base.img).css('opacity',1);
+					$(base.img1).css('opacity',1);
 					$(base.img3).attr('src',src);
 					base.Slideshow();
 				});
