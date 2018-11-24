@@ -50,14 +50,15 @@ $.fn.jsRapPicture = function(options){
 	
 return this.each(function(){
 	this.opt = $.extend({
-		auto:false,
-		pause:3000,
-		transformation:1000,
+		autoplay:false,
+		autoplaySpeed:3000,
+		transition:1000,
 		showDefaultMenu:true,
 		src:'',
 		customMenu:[],
 		onLoad:null,
-		onClickMenu:null
+		onClickMenu:null,
+		onNext:null
 	},options);
 	var base = this;
 	this.timerId = 0;
@@ -90,9 +91,9 @@ return this.each(function(){
 	$('li',this).bind({
 		click:function(e){
 			e.stopPropagation();
-			var li = $(this).text();
+			var menuItem = $(this).text();
 			if(base.opt.onClickMenu)
-				base.opt.onClickMenu.call(base,li);
+				base.opt.onClickMenu.call(base,menuItem);
 			let hide = true;
 			if(base.opt.showDefaultMenu)
 				switch($(this).index()){
@@ -105,11 +106,11 @@ return this.each(function(){
 					hide = false;
 				break;	
 				case 2:
-					base.opt.auto = false;
+					base.opt.autoplay = false;
 					base.SetFullscreen(!fullScreenMode);
 				break;
 				case 3:
-					base.SetAuto(!base.opt.auto);
+					base.SetAuto(!base.opt.autoplay);
 				break;
 			}
 			if(hide)
@@ -121,15 +122,15 @@ return this.each(function(){
 		$('div',this).finish();
 		$('img',this).finish();
 		clearTimeout(this.timerId);
-		if(this.opt.auto)
-			this.opt.auto = false;
+		if(this.opt.autoplay)
+			this.opt.autoplay = false;
 		else
 			if(this.opt.onNext)
 				this.opt.onNext.call(this,next);
 	}
 	
 	this.SetAuto = function(v){
-		this.opt.auto = v;
+		this.opt.autoplay = v;
 		$('.slideshow',this).text('Slideshow ' + (v ? 'Off' : 'On'));
 		if(v)
 			this.Slideshow();
@@ -157,14 +158,14 @@ return this.each(function(){
 			$(base.img3).css('opacity',1);
 			$(base.div).css({width:w,height:h,top:p.top - window.scrollY,left:p.left - window.scrollX,opacity:1});
 			base.img[0].onload = function(){
-				let	w = $(base.img).width();
-				let h = $(base.img).height();
+				let	width = $(base.img).width();
+				let height = $(base.img).height();
 				let p = $(base.img).offset();
 				if(base.opt.onLoad)
-					base.opt.onLoad.call(base,w,h);
+					base.opt.onLoad.call(base,width,height);
 				$(base.img2).attr('src',src);
-				$(base.img3).fadeTo(base.opt.transformation,0);
-				$(base.div).animate({left:p.left - window.scrollX,top:p.top - window.scrollY,width:w,height:h},base.opt.transformation,function(){
+				$(base.img3).fadeTo(base.opt.transition,0);
+				$(base.div).animate({left:p.left - window.scrollX,top:p.top - window.scrollY,width:width,height:height},base.opt.transition,function(){
 					$(base.div).css('opacity',0);
 					$(base.img).css('opacity',1);
 					$(base.img3).attr('src',src);
@@ -177,14 +178,14 @@ return this.each(function(){
 	}
 	
 	this.Slideshow = function(){
-		if(this.opt.auto)
+		if(this.opt.autoplay)
 			this.timerId = setTimeout(function(){
-				if(base.opt.onNext && base.opt.auto)
-					base.opt.onNext.call(base,1);
-			},this.opt.pause);
+				if(base.opt.onNext && base.opt.autoplay)
+					base.opt.onNext.call(base,true);
+			},this.opt.autoplaySpeed);
 	}
 	
-	this.SetAuto(this.opt.auto);
+	this.SetAuto(this.opt.autoplay);
 	this.SetFullscreen(fullScreenMode);
 });
 
