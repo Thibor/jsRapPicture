@@ -11,9 +11,9 @@ JQuery responsive sideshow plugin with menu and fullscreen mode.
 
 Option | Type | Default | Description
 ------ | ---- | ------- | -----------
-auto | boolean | false | Enables auto play of slides
-pause | int | 3000 | Auto play change interval
-transformation | int | 1000 | Transition speed
+autoplay | boolean | false | Enables auto play of slides
+autoplaySpeed | int | 3000 | Auto play change interval
+transition | int | 1000 | Transition speed
 showDefaultMenu | boolean | true | Show default menu: Next Image, Previous Image, Fullscreen, Slideshow
 src | string | '' | web address of the image
 customMenu | array of strings| [] | Custom menu
