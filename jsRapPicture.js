@@ -151,15 +151,15 @@ return this.each(function(){
 		$.get(src)
 		.done(function(){ 
 			$(base).show();
-			let	w = $(base.img1).width()+parseInt($(base.img1).css("border-left-width"))+parseInt($(base.img1).css("border-right-width"));
-			let h = $(base.img1).height()+parseInt($(base.img1).css("border-top-width"))+parseInt($(base.img1).css("border-bottom-width"));
+			let	w = $(base.img1).outerWidth();
+			let h = $(base.img1).outerHeight();
 			let p = $(base.img1).offset();
 			$(base.img1).css('opacity',0).attr('src',src);
 			$(base.img3).css('opacity',1);
 			$(base.div).css({width:w,height:h,top:p.top - window.scrollY,left:p.left - window.scrollX,opacity:1});
 			base.img1[0].onload = function(){
-				let	width = $(base.img1).width()+parseInt($(base.img1).css("border-left-width"))+parseInt($(base.img1).css("border-right-width"));
-				let height = $(base.img1).height()+parseInt($(base.img1).css("border-top-width"))+parseInt($(base.img1).css("border-bottom-width"));
+				let	width = $(base.img1).outerWidth();
+				let height = $(base.img1).outerHeight();
 				let p = $(base.img1).offset();
 				if(base.opt.onLoad)
 					base.opt.onLoad.call(base,width,height);

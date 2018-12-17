@@ -1,10 +1,10 @@
 .rapPicture{
-cursor:pointer;
-position:relative;
-margin:8px;
-padding:0px;
--webkit-user-select:none;
--moz-user-select:none;
+	cursor:pointer;
+	position:relative;
+	margin:8px;
+	padding:0px;
+	-webkit-user-select:none;
+	-moz-user-select:none;
 }
 .rapPicture div{
 	border-radius:25px;
