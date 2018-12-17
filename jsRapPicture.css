@@ -6,6 +6,11 @@ padding:0px;
 -webkit-user-select:none;
 -moz-user-select:none;
 }
+.rapPicture div,
+.rapPicture img{
+	/*border-width:0px;*/
+	border-radius:25px;
+}
 .rapPictureFS{
 background:black;
 top:0px;
@@ -16,7 +21,6 @@ margin:0px;
 padding:0px;
 }
 .rapPictureDiv{	
-box-sizing: border-box;
 top:0px;
 display:block;
 margin:auto;
@@ -28,22 +32,26 @@ pointer-events: none;
 top:0px;
 display:block;
 margin:auto;
+border: 8px solid #fff;
+box-sizing:border-box;
 }
 .rapPicture2{
 position:absolute;
 width:100%;
 height:100%;
 z-index:2;
+border: 8px solid #fff;
+box-sizing:border-box;
 }
 .rapPicture3{	
 position:absolute;
 width:100%;
 height:100%;
 z-index:3;
+border: 8px solid #fff;
+box-sizing:border-box;
 }
 .rapPictureBorder{
-border: 1px solid #888;
-border-radius:5px;
 box-shadow:4px 4px 6px #000;
 }
 .rapPictureStd{
