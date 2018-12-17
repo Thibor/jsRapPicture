@@ -6,10 +6,13 @@ padding:0px;
 -webkit-user-select:none;
 -moz-user-select:none;
 }
-.rapPicture div,
-.rapPicture img{
-	/*border-width:0px;*/
+.rapPicture div{
 	border-radius:25px;
+}
+.rapPicture img{
+	border: 8px solid #fff;
+	border-radius:25px;
+	box-sizing:border-box;
 }
 .rapPictureFS{
 background:black;
@@ -32,24 +35,18 @@ pointer-events: none;
 top:0px;
 display:block;
 margin:auto;
-border: 8px solid #fff;
-box-sizing:border-box;
 }
 .rapPicture2{
 position:absolute;
 width:100%;
 height:100%;
 z-index:2;
-border: 8px solid #fff;
-box-sizing:border-box;
 }
 .rapPicture3{	
 position:absolute;
 width:100%;
 height:100%;
 z-index:3;
-border: 8px solid #fff;
-box-sizing:border-box;
 }
 .rapPictureBorder{
 box-shadow:4px 4px 6px #000;
