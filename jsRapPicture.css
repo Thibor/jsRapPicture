@@ -16,6 +16,7 @@ margin:0px;
 padding:0px;
 }
 .rapPictureDiv{	
+box-sizing: border-box;
 top:0px;
 display:block;
 margin:auto;

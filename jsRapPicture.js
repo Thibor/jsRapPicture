@@ -69,7 +69,7 @@ return this.each(function(){
 	this.img1 = $('<img>').attr('src',this.opt.src).addClass('rapPicture1 rapPictureStd rapPictureBorder').appendTo(this);
 	this.img2 = $('<img>').attr('src',this.opt.src).addClass('rapPicture2').appendTo(this.div);
 	this.img3 = $('<img>').attr('src',this.opt.src).addClass('rapPicture3').appendTo(this.div);
-	var li = this.opt.showDefaultMenu ? '<li>Next Image</li><li>Previous Image</li><li class="fullscreen"></li><li class="slideshow"></li>' : '';
+	var li = this.opt.showDefaultMenu ? '<li>Next Image</li><li>Previous Image</li><li class="fullscreen">Fullscreen On</li><li class="slideshow"></li>' : '';
 	if(this.opt.customMenu.length)
 		 li += '<li>' + this.opt.customMenu.join('</li><li>') + '</li>';
 	 if(li)
@@ -186,7 +186,6 @@ return this.each(function(){
 	}
 	
 	this.SetAuto(this.opt.autoplay);
-	this.SetFullscreen(fullScreenMode);
 });
 
 }
