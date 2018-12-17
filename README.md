@@ -1,8 +1,6 @@
 # jsRapPicture
 JQuery responsive sideshow plugin with menu and fullscreen mode.
 
-<img src="screenshot.png">
-
 #### Demo
 
 [https://thibor.github.io/jsRapPicture/](https://thibor.github.io/jsRapPicture/) 
