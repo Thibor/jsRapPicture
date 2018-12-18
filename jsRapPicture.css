@@ -7,9 +7,11 @@
 	-moz-user-select:none;
 }
 .rapPicture div{
+	background-color:white;
 	border-radius:25px;
 }
 .rapPicture img{
+	background-color:white;
 	border: 8px solid #fff;
 	border-radius:25px;
 	box-sizing:border-box;

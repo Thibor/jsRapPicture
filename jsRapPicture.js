@@ -60,7 +60,8 @@ return this.each(function(){
 		onClickMenu:null,
 		onNext:null
 	},options);
-	var base = this;
+	let base = this;
+	let isReady = true;
 	this.timerId = 0;
 	if($('img',this).length)
 		this.opt.src = $('img',this).attr('src');
@@ -119,13 +120,11 @@ return this.each(function(){
 	});
 	
 	this.ClickNext = function(next){
-		$('div',this).finish();
-		$('img',this).finish();
 		clearTimeout(this.timerId);
 		if(this.opt.autoplay)
 			this.opt.autoplay = false;
 		else
-			if(this.opt.onNext)
+			if(this.opt.onNext && isReady)
 				this.opt.onNext.call(this,next);
 	}
 	
@@ -148,6 +147,7 @@ return this.each(function(){
 	}
 	
 	this.SetImg = function(src){
+		isReady = false;
 		$.get(src)
 		.done(function(){ 
 			$(base).show();
@@ -166,10 +166,12 @@ return this.each(function(){
 				$(base.img2).attr('src',src);
 				$(base.img3).fadeTo(base.opt.transition,0);
 				$(base.div).animate({left:p.left - window.scrollX,top:p.top - window.scrollY,width:width,height:height},base.opt.transition,function(){
+					isReady = true;
 					$(base.div).css('opacity',0);
 					$(base.img1).css('opacity',1);
 					$(base.img3).attr('src',src);
 					base.Slideshow();
+					
 				});
 			};
 		}).fail(function(){
