@@ -23,14 +23,12 @@ else if(element.msRequestFullscreen)
 $(document).bind('webkitfullscreenchange mozfullscreenchange fullscreenchange',function(e){
 fullScreenMode = document.fullScreen || document.mozFullScreen || document.webkitIsFullScreen;
 if(fullScreenMode){
-	$('.rapPicture').addClass('rapPictureFS');
-	$('.rapPicture1').removeClass('rapPictureStd rapPictureBorder').addClass('rapPictureFull');
-	$('.rapPictureDiv').removeClass('rapPictureBorder');
+	$('.rapPicture').addClass('rapPictureF');
+	$('.rapPicture').removeClass('rapPictureN');
 	$('.fullscreen').text('Fullscreen Off');
 }else{
-	$('.rapPicture').removeClass('rapPictureFS');
-	$('.rapPicture1').removeClass('rapPictureFull').addClass('rapPictureStd rapPictureBorder');
-	$('.rapPictureDiv').addClass('rapPictureBorder');
+	$('.rapPicture').addClass('rapPictureN');
+	$('.rapPicture').removeClass('rapPictureF');
 	$('.fullscreen').text('Fullscreen On');
 }	
 });
@@ -65,9 +63,9 @@ return this.each(function(){
 	this.timerId = 0;
 	if($('img',this).length)
 		this.opt.src = $('img',this).attr('src');
-	$(this).empty().addClass('rapPicture');
-	this.div = $('<div>').addClass('rapPictureDiv rapPictureBorder').appendTo(this);
-	this.img1 = $('<img>').attr('src',this.opt.src).addClass('rapPicture1 rapPictureStd rapPictureBorder').appendTo(this);
+	$(this).empty().addClass('rapPicture rapPictureN');
+	this.div = $('<div>').appendTo(this);
+	this.img1 = $('<img>').attr('src',this.opt.src).addClass('rapPicture1').appendTo(this);
 	this.img2 = $('<img>').attr('src',this.opt.src).addClass('rapPicture2').appendTo(this.div);
 	this.img3 = $('<img>').attr('src',this.opt.src).addClass('rapPicture3').appendTo(this.div);
 	var li = this.opt.showDefaultMenu ? '<li>Next Image</li><li>Previous Image</li><li class="fullscreen">Fullscreen On</li><li class="slideshow"></li>' : '';

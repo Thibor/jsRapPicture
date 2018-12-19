@@ -6,80 +6,87 @@
 	-webkit-user-select:none;
 	-moz-user-select:none;
 }
-.rapPicture div{
+.rapPictureN div{
+	top:0px;
+	display:block;
+	margin:auto;
+	opacity:0;
+	position:fixed;
 	background-color:white;
 	border-radius:25px;
+	pointer-events: none;
 }
-.rapPicture img{
+.rapPictureN div{
+	box-shadow:4px 4px 6px #000;
+}
+.rapPictureN > img{
+	width: 100%;
+	box-shadow:4px 4px 6px #000;
+}
+.rapPictureN img{
 	background-color:white;
 	border: 8px solid #fff;
 	border-radius:25px;
 	box-sizing:border-box;
 }
-.rapPictureFS{
-background:black;
-top:0px;
-left:0px;
-width:100% !important;
-height:100%;
-margin:0px;
-padding:0px;
+.rapPictureF{
+	background:black;
+	top:0px;
+	left:0px;
+	width:100% !important;
+	height:100%;
+	margin:0px;
+	padding:0px;
 }
-.rapPictureDiv{	
-top:0px;
-display:block;
-margin:auto;
-opacity:0;
-position:fixed;
-pointer-events: none;
+.rapPictureF div{
+	top:0px;
+	display:block;
+	margin:auto;
+	opacity:0;
+	position:fixed;
+	pointer-events: none;
+}
+.rapPictureF > img{
+	height:100%;
 }
 .rapPicture1{
-top:0px;
-display:block;
-margin:auto;
+	top:0px;
+	display:block;
+	margin:auto;
 }
 .rapPicture2{
-position:absolute;
-width:100%;
-height:100%;
-z-index:2;
+	position:absolute;
+	width:100%;
+	height:100%;
+	z-index:2;
 }
-.rapPicture3{	
-position:absolute;
-width:100%;
-height:100%;
-z-index:3;
+.rapPicture3{
+	position:absolute;
+	width:100%;
+	height:100%;
+	z-index:3;
 }
-.rapPictureBorder{
-box-shadow:4px 4px 6px #000;
-}
-.rapPictureStd{
-width: 100%;	
-}
-.rapPictureFull{
-height:100%;
-}
-.custom-menu {
-display:none;
-position:fixed;
-z-index:1000;
-overflow: hidden;
-border: 1px solid #ccc;
-white-space: nowrap;
-font-family: sans-serif;
-background:#eee;
-color: #333;
-border-radius: 5px;
-margin:0px;
-padding:4px;
+.custom-menu{
+	display:none;
+	position:fixed;
+	z-index:1000;
+	overflow: hidden;
+	border: 1px solid #ccc;
+	white-space: nowrap;
+	font-family: sans-serif;
+	background:#eee;
+	color: #333;
+	border-radius: 5px;
+	margin:0px;
+	padding:4px;
 }
 .custom-menu li{
-border:solid 1px #eee;
-cursor: pointer;
-padding: 4px 4px;
-list-style: none;
+	border:solid 1px #eee;
+	cursor: pointer;
+	padding: 4px 4px;
+	list-style: none;
 }
-.custom-menu li:hover {
-background-color:#def;
-border-color:#bcd;
+.custom-menu li:hover{
+	background-color:#def;
+	border-color:#bcd;
 }
