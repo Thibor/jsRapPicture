@@ -157,7 +157,7 @@ $(window).scroll(function () {
 				let h = Math.floor(r.height);
 				let l = p.left - window.scrollX;
 				let t = p.top - window.scrollY;
-				return {w:w,h:h,l:l,t:t};
+				return { w: w, h: h, l: l, t: t };
 			}
 
 			this.SetImg = function (src) {
@@ -177,7 +177,7 @@ $(window).scroll(function () {
 							$(base.img2).attr('src', src);
 							$(base.img3).fadeTo(base.opt.transition, 0);
 							let transition = base.first ? 0 : base.opt.transition;
-							$(base.div).animate({ left:mp.l, top:mp.t, width:mp.w, height: mp.h }, transition, function () {
+							$(base.div).animate({ left: mp.l, top: mp.t, width: mp.w, height: mp.h }, transition, function () {
 								base.first = false;
 								isReady = true;
 								$(base.div).css({ opacity: 0 });
