@@ -1,53 +1,62 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Demo</title>
-<link rel="stylesheet" href="index.css" />
-<link rel="stylesheet" href="jsRapPicture.css" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="jsRapPicture.js"></script>
-<script>
-function ClickPicture(t,next){
-var w = 200 + Math.floor(Math.random() * 10) * 10;
-var h = 300 + Math.floor(Math.random() * 10) * 10;
-var src = 'https://picsum.photos/' + w + '/' + h + '/?random';
-$(t)[0].SetImg(src);
-}
+	<meta charset="UTF-8">
+	<title>Demo</title>
+	<link rel="stylesheet" href="index.css" />
+	<link rel="stylesheet" href="jsRapPicture.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="jsRapPicture.js"></script>
+	<script>
+		function GetPicture() {
+			var w = 200 + Math.floor(Math.random() * 10) * 10;
+			var h = 300 + Math.floor(Math.random() * 10) * 10;
+			return 'https://picsum.photos/' + w + '/' + h + '/?random';
+		}
 
-$(document).ready(function(){
-$('#demo1').jsRapPicture({
-	onNext:function(next){
-		ClickPicture(this,next);
-	}
-});
-$('#demo2').jsRapPicture({
-	autoplay:true,
-	showDefaultMenu:false,
-	customMenu:['Info'],
-	onClickMenu:function(li){
-		var w = $(this.img1)[0].naturalWidth;
-		var h = $(this.img1)[0].naturalHeight;
-		alert('Image width ' + w + ' \nImage height ' + h);
-	},
-	onNext:function(next){
-		ClickPicture(this,next);
-	}
-});
+		function Slideshow() {
+			let rp = $('#demo1')[0];
+			rp.SetAuto(true);
+			rp.SetFullscreen(true);
+		}
 
-});
-</script>
+		$(document).ready(function () {
+			$('#demo1').jsRapPicture({
+				src: GetPicture(),
+				onNext: function (next) {
+					let src = GetPicture();
+					this.SetImg(src);
+				}
+			});
+			$('#demo2').jsRapPicture({
+				autoplay: true,
+				showDefaultMenu: false,
+				src: GetPicture(),
+				customMenu: ['Info'],
+				onClickMenu: function (li) {
+					var w = this.imgMain[0].naturalWidth;
+					var h = this.imgMain[0].naturalHeight;
+					alert('Image width ' + w + ' \nImage height ' + h);
+				},
+				onNext: function (next) {
+					let src = GetPicture();
+					this.SetImg(src);
+				}
+			});
+
+		});
+	</script>
 </head>
 <body>
-<div id="divMain">
-<div id="divGitHub">
-<div id="GitHub" onclick="location.href='https://github.com/Thibor/jsRapPicture'" ></div>
-</div>
-<div id="demo1" >
-<img src="https://picsum.photos/200/400/?random" />
-</div>
-<div id="demo2" >
-<img src="https://picsum.photos/300/400/?random" />
-</div>
+	<div id="divMain">
+		<div id="divGitHub">
+			<div id="GitHub" onclick="location.href='https://github.com/Thibor/jsRapPicture'"></div>
+		</div>
+		<div>
+			<button onclick="Slideshow()">Slideshow</button>
+		</div>
+		<div id="demo1"></div>
+		<div id="demo2"></div>
+	</div>
 </body>
 </html>
