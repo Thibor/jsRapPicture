@@ -153,8 +153,8 @@ $(window).scroll(function () {
 			function GetImgMainPosition() {
 				let r = base.imgMain[0].getBoundingClientRect();
 				let p = base.imgMain.offset();
-				let w = Math.floor(r.width);
-				let h = Math.floor(r.height);
+				let w = r.width;
+				let h = r.height;
 				let l = p.left - window.scrollX;
 				let t = p.top - window.scrollY;
 				return { w: w, h: h, l: l, t: t };
@@ -166,7 +166,6 @@ $(window).scroll(function () {
 					.done(function () {
 						let mp = GetImgMainPosition();
 						$(base.div).css({ width: mp.w, height: mp.h, left: mp.l, top: mp.t, opacity: 1 });
-						base.opt.src = src;
 						$(base).show();
 						$(base.imgMain).css('opacity', 0).attr('src', src);
 						$(base.img3).css('opacity', 1);
